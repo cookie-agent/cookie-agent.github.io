@@ -1,6 +1,6 @@
 /* Palette mirrors the TUI themes in cookie-agent/crates/tui/src/theme.rs. */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   --bg: #fbf4e6;          /* cream */
   --panel: #f2e5cc;       /* parchment */
@@ -21,8 +21,10 @@
   --max: 1280px;
 }
 
+/* Dark follows the system unless the header toggle picked a theme. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #201c16;
     --panel: #29251d;
     --panel-raised: #393326;
@@ -34,6 +36,20 @@
     --button-bg: #edc7ab;
     --button-text: #201c16;
   }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #201c16;
+  --panel: #29251d;
+  --panel-raised: #393326;
+  --rule: #393326;
+  --rule-strong: #63563b;
+  --text: #edc7ab;
+  --muted: #c9b59c;
+  --accent: #e78c33;    /* maple */
+  --button-bg: #edc7ab;
+  --button-text: #201c16;
 }
 
 *,
@@ -135,9 +151,54 @@ code {
   font-weight: 500;
 }
 
+.site-nav {
+  align-items: center;
+}
+
 .site-nav a {
   text-decoration: none;
   padding: 10px 0;
+}
+
+/* Theme toggle: the same sun icons as the docs header. */
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  margin: 0 -8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+.theme-toggle .to-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .to-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .to-light {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .to-dark {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .to-light {
+    display: block;
+  }
 }
 
 /* Hero */

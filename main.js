@@ -41,3 +41,31 @@ for (const button of document.querySelectorAll(".os-tabs button")) {
   button.addEventListener("click", () => showPlatform(button.dataset.os));
 }
 if (/Windows/.test(navigator.userAgent)) showPlatform("windows");
+
+// Theme toggle: flip the theme on screen and remember the choice.
+const root = document.documentElement;
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const themeColor = { light: "#fbf4e6", dark: "#201c16" };
+function currentTheme() {
+  return root.dataset.theme || (darkQuery.matches ? "dark" : "light");
+}
+function labelToggle(button) {
+  const label = currentTheme() === "dark" ? "Switch to light mode" : "Switch to dark mode";
+  button.setAttribute("aria-label", label);
+  button.title = label;
+}
+for (const button of document.querySelectorAll(".theme-toggle")) {
+  labelToggle(button);
+  darkQuery.addEventListener("change", () => labelToggle(button));
+  button.addEventListener("click", () => {
+    const theme = currentTheme() === "dark" ? "light" : "dark";
+    root.dataset.theme = theme;
+    for (const meta of document.querySelectorAll('meta[name="theme-color"]')) {
+      meta.content = themeColor[theme];
+    }
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
+    labelToggle(button);
+  });
+}
