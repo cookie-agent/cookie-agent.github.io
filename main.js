@@ -25,3 +25,19 @@ for (const panel of document.querySelectorAll(".presets")) {
     });
   }
 }
+
+// Install switch: every .install block follows the same platform, starting
+// from the visitor's own.
+const installs = document.querySelectorAll(".install");
+function showPlatform(os) {
+  for (const install of installs) {
+    install.dataset.active = os;
+    for (const button of install.querySelectorAll(".os-tabs button")) {
+      button.setAttribute("aria-pressed", String(button.dataset.os === os));
+    }
+  }
+}
+for (const button of document.querySelectorAll(".os-tabs button")) {
+  button.addEventListener("click", () => showPlatform(button.dataset.os));
+}
+if (/Windows/.test(navigator.userAgent)) showPlatform("windows");

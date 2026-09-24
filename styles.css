@@ -739,11 +739,20 @@ code {
   gap: 24px;
 }
 
-.closing .command {
+.closing .install {
   width: 100%;
   max-width: 720px;
+  align-items: center;
+}
+
+.closing .command {
+  width: 100%;
   background: var(--bg);
   text-align: left;
+}
+
+.closing .os-tabs button[aria-pressed="true"] {
+  background: var(--bg);
 }
 
 .closing .actions {
@@ -830,4 +839,44 @@ code {
     width: 34px;
     height: 34px;
   }
+}
+
+/* Install switch: one command per platform, chosen by the tabs above it. */
+
+.install {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.os-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.os-tabs button {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.os-tabs button:hover {
+  color: var(--accent);
+}
+
+.os-tabs button[aria-pressed="true"] {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.install[data-active="unix"] .command[data-os="windows"],
+.install[data-active="windows"] .command[data-os="unix"] {
+  display: none;
 }
