@@ -19,10 +19,12 @@
   <meta name="twitter:card" content="summary">
 
   <script>
-    // Apply a stored theme choice before first paint.
+    // Apply the theme chosen here or in the docs before first paint. Both
+    // share the docs' Material palette record at /.__palette.
     try {
-      const theme = localStorage.getItem("theme");
-      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      const scheme = JSON.parse(localStorage.getItem("/.__palette"))?.color?.scheme;
+      if (scheme === "default") document.documentElement.dataset.theme = "light";
+      if (scheme === "slate") document.documentElement.dataset.theme = "dark";
     } catch {}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
