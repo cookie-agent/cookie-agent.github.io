@@ -783,6 +783,115 @@ code {
   color: var(--muted);
 }
 
+/* 06 · anywhere */
+
+.anywhere {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.topology {
+  width: 100%;
+  max-width: 520px;
+  align-self: center;
+  height: auto;
+  font-family: var(--font-mono);
+}
+
+.topology .node {
+  fill: var(--panel-raised);
+  stroke: var(--rule-strong);
+}
+
+.topology .node.root {
+  fill: var(--button-bg);
+  stroke: var(--button-bg);
+}
+
+.topology .node-title {
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--text);
+}
+
+.topology .node-sub {
+  font-size: 11.5px;
+  fill: var(--muted);
+}
+
+.topology .on-root {
+  fill: var(--button-text);
+}
+
+.topology .link {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+.topology .link-label {
+  font-size: 11.5px;
+  fill: var(--muted);
+}
+
+.pillar .wrap.shots-row {
+  display: block;
+  padding-top: 0;
+}
+
+.shots {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+.shot {
+  display: block;
+  height: auto;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+}
+
+.shot.desktop {
+  width: 86%;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgb(70 48 31 / 0.14);
+}
+
+.shot.phone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24%;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgb(0 0 0 / 0.25);
+}
+
+/* One screenshot per theme, following the page's theme. */
+.shot.for-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .shot.for-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .shot.for-dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .shot.for-light {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .shot.for-dark {
+    display: block;
+  }
+}
+
 /* Closing */
 
 .closing {
@@ -888,6 +997,17 @@ code {
 }
 
 @media (max-width: 560px) {
+  /* A phone sees the phone screenshot. */
+  .shot.desktop {
+    display: none !important;
+  }
+
+  .shot.phone {
+    position: static;
+    width: min(78%, 320px);
+    margin: 0 auto;
+  }
+
   .presets-body {
     grid-template-columns: minmax(0, 1fr);
   }

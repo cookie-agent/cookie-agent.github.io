@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>cookie agent · simple and mighty coding agent</title>
-  <meta name="description" content="cookie agent is a Rust terminal coding agent with everything built in and nothing in context you did not ask for: switchable agent presets, delegation and agent-to-agent messaging, and a fully observable context.">
+  <meta name="description" content="cookie agent is a Rust coding agent with everything built in and nothing in context you did not ask for: switchable agent presets, delegation and agent-to-agent messaging, a fully observable context, and one daemon you reach from a terminal or a browser while tools run on any machine.">
   <meta name="theme-color" content="#fbf4e6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#201c16" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://cookie-agent.github.io/">
@@ -59,7 +59,7 @@
         <div class="hero-copy">
           <p class="eyebrow">a subagent-first coding harness · written in Rust</p>
           <h1>Simple and mighty coding agent.</h1>
-          <p class="lede">Everything a coding agent needs is built in, and nothing reaches the model unless you ask for it. Switch whole agent teams with a preset, let agents delegate and message each other, and see everything the model sees.</p>
+          <p class="lede">Everything a coding agent needs is built in, and nothing reaches the model unless you ask for it. Switch whole agent teams with a preset, let agents delegate and message each other, see everything the model sees, and reach it all from a terminal or a browser, wherever your code lives.</p>
           <div class="install" data-active="unix" id="install">
             <div class="os-tabs" role="group" aria-label="Choose your platform">
               <button type="button" data-os="unix" aria-pressed="true">macOS · Linux</button>
@@ -100,7 +100,7 @@
           <div class="pillar-copy">
             <p class="kicker">01 · mighty</p>
             <h2 id="p1-title">Everything a coding agent needs, in the box.</h2>
-            <p>Providers, permissions, delegation, sessions and plugins are built in, not bolted on. One local daemon owns them all, and every client talks to it over a versioned protocol.</p>
+            <p>Providers, permissions, delegation, sessions, memory and plugins are built in, not bolted on. One daemon owns them all, on your laptop or on a server, and every client talks to it over a versioned protocol.</p>
             <ul class="points">
               <li>Managed and custom providers, with per-agent model fallback chains and retries.</li>
               <li>Durable sessions with automatic compaction, forks and reverts.</li>
@@ -116,11 +116,15 @@
               <li>delegation</li>
               <li>agent messaging</li>
               <li>durable sessions</li>
+              <li>background calls</li>
               <li>compaction</li>
               <li>goal mode</li>
               <li>skills</li>
               <li>plugins</li>
               <li>MCP</li>
+              <li>memory</li>
+              <li>runtimes</li>
+              <li>web client</li>
               <li>usage and cost</li>
             </ul>
           </div>
@@ -283,6 +287,7 @@ snapshot. Start in session/store.rs.
             <ul class="points">
               <li>The TUI shows the system prompt, AGENTS.md, loaded skills, plugin-injected messages and compaction checkpoints as expandable rows.</li>
               <li>Token counts, cache hit rates and estimated cost for each session and its whole delegation tree.</li>
+              <li>The browser shows the same transcript as the terminal, built from the same events: every tool call, AGENTS.md, skills, plugin messages and compaction checkpoints.</li>
               <li>Failed model calls keep the provider, HTTP status, request ID and response body.</li>
             </ul>
           </div>
@@ -323,6 +328,65 @@ snapshot. Start in session/store.rs.
             </details>
             <p class="context-foot">Frozen when the run starts, fingerprinted, replayable.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- 06 · Anywhere -->
+      <section class="pillar flip" aria-labelledby="p6-title">
+        <div class="wrap">
+          <div class="pillar-copy">
+            <p class="kicker">06 · anywhere</p>
+            <h2 id="p6-title">Run it anywhere. Reach it from anything.</h2>
+            <p>Your sessions live in one daemon. Their tools run in runtimes: on this machine, on a server over ssh, or on a box that dials in. Open the same sessions from a terminal, a browser, or your phone, all at once.</p>
+            <ul class="points">
+              <li>Point a session at a repository on another machine and the agent reads, edits and runs commands there; the session itself stays with the daemon.</li>
+              <li>The daemon serves its own web client: chat, approvals, subagents, runtimes and memory, laid out for a phone too.</li>
+              <li>Every client sees every session live. Send from the browser, watch in the terminal, and answer an approval from either.</li>
+            </ul>
+          </div>
+          <div class="panel anywhere">
+            <svg class="topology" viewBox="0 0 440 252" role="img" aria-label="Clients (terminal, browser, phone) connect to one daemon, which runs tools in runtimes on this machine, on a server over ssh, and on a machine that dials in.">
+              <path class="link" d="M106 38 H126 V118 H146"/>
+              <path class="link" d="M106 118 H146"/>
+              <path class="link" d="M106 198 H126 V118"/>
+              <path class="link" d="M264 118 H282 V38 H300"/>
+              <path class="link" d="M282 118 H300"/>
+              <path class="link" d="M282 118 V198 H300"/>
+              <text class="link-label" x="126" y="246" text-anchor="middle">client protocol</text>
+              <text class="link-label" x="282" y="246" text-anchor="middle">runtime protocol</text>
+
+              <rect class="node" x="1" y="14" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="43">terminal</text>
+              <rect class="node" x="1" y="94" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="123">browser</text>
+              <rect class="node" x="1" y="174" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="203">phone</text>
+
+              <rect class="node root" x="146" y="62" width="118" height="112" rx="12"/>
+              <text class="node-title on-root" x="160" y="92">daemon</text>
+              <text class="node-sub on-root" x="160" y="114">sessions</text>
+              <text class="node-sub on-root" x="160" y="132">agents</text>
+              <text class="node-sub on-root" x="160" y="150">memory</text>
+
+              <rect class="node" x="300" y="14" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="35">this machine</text>
+              <text class="node-sub" x="314" y="52">local</text>
+              <rect class="node" x="300" y="94" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="115">labpc</text>
+              <text class="node-sub" x="314" y="132">over ssh</text>
+              <rect class="node" x="300" y="174" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="195">devbox</text>
+              <text class="node-sub" x="314" y="212">dials in</text>
+            </svg>
+          </div>
+        </div>
+        <div class="wrap shots-row">
+          <figure class="shots">
+            <img class="shot desktop for-light" src="web-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The cookie agent web client in a browser: a session titled Fix the greeting in greet.py, where the agent edits greet.py (shown as a diff), runs python3 test_greet.py (shown as terminal output), and reports the fix.">
+            <img class="shot desktop for-dark" src="web-dark.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The cookie agent web client in a browser, dark theme: the agent edits greet.py, runs its check, and reports the fix.">
+            <img class="shot phone for-light" src="web-phone-light.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone.">
+            <img class="shot phone for-dark" src="web-phone-dark.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone, dark theme.">
+          </figure>
         </div>
       </section>
 
