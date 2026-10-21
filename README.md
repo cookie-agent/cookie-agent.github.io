@@ -1,6 +1,6 @@
 # cookie-agent.github.io
 
-Landing page for [cookie agent](https://github.com/cookie-agent/cookie-agent),
+Landing page for [Cookie Agent](https://github.com/cookie-agent/cookie-agent),
 served at <https://cookie-agent.github.io/>. The documentation lives in the
 separate `cookie-agent/doc` repository and is served under `/doc/`.
 
