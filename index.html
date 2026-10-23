@@ -60,9 +60,9 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-copy">
-          <p class="eyebrow">a subagent-first coding harness · written in Rust</p>
+          <p class="eyebrow">written in Rust</p>
           <h1>Simple and mighty coding agent.</h1>
-          <p class="lede">Everything a coding agent needs is built in, and nothing reaches the model unless you ask for it. Switch whole agent teams with a preset, let agents delegate and message each other, see everything the model sees, and reach it all from a terminal or a browser, wherever your code lives.</p>
+          <p class="lede">One daemon for all your agents: memory, API calls and skills live in one place, and you reach every session from a terminal, a browser or your phone, wherever your code lives. Bring your favorite harness, or use Cookie Agent's own agents, with everything built in and nothing reaching the model unless you ask for it.</p>
           <div class="install" data-active="unix" id="install">
             <div class="os-tabs" role="group" aria-label="Choose your platform">
               <button type="button" data-os="unix" aria-pressed="true">macOS · Linux</button>
@@ -97,11 +97,97 @@
       </div>
     </section>
 
-      <!-- 01 · Mighty -->
+      <!-- 01 · Anywhere -->
+      <section class="pillar" aria-labelledby="p6-title">
+        <div class="wrap">
+          <div class="pillar-copy">
+            <p class="kicker">01 · anywhere</p>
+            <h2 id="p6-title">Run it anywhere. Reach it from anything.</h2>
+            <p>Cookie Agent is built as both kinds of agent at once: an always-on agent like Hermes or OpenClaw that keeps running and remembers, and a coding agent like opencode or pi that works in your repositories. One daemon holds your sessions; their tools run in runtimes on this machine, on a server over ssh, or on a box that dials in; and you open the same sessions from a terminal, a browser, or your phone.</p>
+            <ul class="points">
+              <li><strong>Memory stays in one place.</strong> What your agents learn about you, your projects and your machines lives with the daemon, so every session on every machine starts from the same memory.</li>
+              <li><strong>API calls happen in one place.</strong> Providers, keys, usage and cost live with the daemon; runtimes on other machines never hold your credentials.</li>
+              <li><strong>Skills are shared everywhere.</strong> Install a skill once and every session on every machine has it, with nothing to copy or keep in sync.</li>
+              <li>Point a session at a repository on another machine and the agent reads, edits and runs commands there, while the session stays with the daemon.</li>
+              <li>Every client sees every session live: send from the browser, watch in the terminal, and answer an approval from either, phone included.</li>
+            </ul>
+          </div>
+          <div class="panel anywhere">
+            <svg class="topology" viewBox="0 0 440 252" role="img" aria-label="Clients (terminal, browser, phone) connect to one daemon, which runs tools in runtimes on this machine, on a server over ssh, and on a machine that dials in.">
+              <path class="link" d="M106 38 H126 V118 H146"/>
+              <path class="link" d="M106 118 H146"/>
+              <path class="link" d="M106 198 H126 V118"/>
+              <path class="link" d="M264 118 H282 V38 H300"/>
+              <path class="link" d="M282 118 H300"/>
+              <path class="link" d="M282 118 V198 H300"/>
+              <text class="link-label" x="126" y="246" text-anchor="middle">client protocol</text>
+              <text class="link-label" x="282" y="246" text-anchor="middle">runtime protocol</text>
+
+              <rect class="node" x="1" y="14" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="43">terminal</text>
+              <rect class="node" x="1" y="94" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="123">browser</text>
+              <rect class="node" x="1" y="174" width="105" height="48" rx="10"/>
+              <text class="node-title" x="15" y="203">phone</text>
+
+              <rect class="node root" x="146" y="62" width="118" height="112" rx="12"/>
+              <text class="node-title on-root" x="160" y="92">daemon</text>
+              <text class="node-sub on-root" x="160" y="114">sessions</text>
+              <text class="node-sub on-root" x="160" y="132">agents</text>
+              <text class="node-sub on-root" x="160" y="150">memory</text>
+
+              <rect class="node" x="300" y="14" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="35">this machine</text>
+              <text class="node-sub" x="314" y="52">local</text>
+              <rect class="node" x="300" y="94" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="115">labpc</text>
+              <text class="node-sub" x="314" y="132">over ssh</text>
+              <rect class="node" x="300" y="174" width="139" height="48" rx="10"/>
+              <text class="node-title" x="314" y="195">devbox</text>
+              <text class="node-sub" x="314" y="212">dials in</text>
+            </svg>
+          </div>
+        </div>
+        <div class="wrap shots-row">
+          <figure class="shots">
+            <img class="shot desktop for-light" src="web-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser: a session titled Fix the greeting in greet.py, where the agent edits greet.py (shown as a diff), runs python3 test_greet.py (shown as terminal output), and reports the fix.">
+            <img class="shot desktop for-dark" src="web-dark.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser, dark theme: the agent edits greet.py, runs its check, and reports the fix.">
+            <img class="shot phone for-light" src="web-phone-light.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone.">
+            <img class="shot phone for-dark" src="web-phone-dark.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone, dark theme.">
+          </figure>
+        </div>
+      </section>
+
+      <!-- 02 · Harness -->
+      <section class="pillar flip" aria-labelledby="p-harness-title">
+        <div class="wrap">
+          <div class="pillar-copy">
+            <p class="kicker">02 · harness</p>
+            <h2 id="p-harness-title">Use your favorite harness.</h2>
+            <p>Claude Code, Codex, Gemini CLI and other agents that speak the Agent Client Protocol run as Cookie Agent agents. A runtime launches the harness where your code is, and Cookie Agent drives it: its turns, tool calls and plans show up in the same transcript, on every client.</p>
+            <ul class="points">
+              <li>The harness gets Cookie Agent's tools: shared memory, delegation to other agents, scheduled prompts, and every MCP server you connected.</li>
+              <li>Your permission rules decide what it may do, and approvals reach you on whichever client you have open.</li>
+              <li>Start a session on it, or let another agent delegate to it like any subagent.</li>
+            </ul>
+          </div>
+          <div class="panel layers" aria-label="Harnesses that run as Cookie Agent agents">
+            <p class="layer-label">Runs as an agent</p>
+            <ul class="chips">
+              <li>Claude Code</li>
+              <li>Codex</li>
+              <li>Gemini CLI</li>
+              <li>any ACP agent</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Mighty -->
       <section class="pillar" aria-labelledby="p1-title">
         <div class="wrap">
           <div class="pillar-copy">
-            <p class="kicker">01 · mighty</p>
+            <p class="kicker">03 · mighty</p>
             <h2 id="p1-title">Everything a coding agent needs, in the box.</h2>
             <p>Providers, permissions, delegation, sessions, memory and plugins are built in, not bolted on. One daemon owns them all, on your laptop or on a server, and every client talks to it over a versioned protocol.</p>
             <ul class="points">
@@ -134,11 +220,11 @@
         </div>
       </section>
 
-      <!-- 02 · Small -->
+      <!-- 04 · Small -->
       <section class="pillar flip" aria-labelledby="p2-title">
         <div class="wrap">
           <div class="pillar-copy">
-            <p class="kicker">02 · small</p>
+            <p class="kicker">04 · small</p>
             <h2 id="p2-title">Nothing in context you didn't ask for.</h2>
             <p>Your agent document is the system prompt. The engine adds a single line naming the working directory. Everything else that costs tokens is opt-in or switches off.</p>
             <ul class="points">
@@ -179,11 +265,11 @@ concrete findings.</code></pre>
         </div>
       </section>
 
-      <!-- 03 · Presets -->
+      <!-- 05 · Presets -->
       <section class="pillar" aria-labelledby="p3-title">
         <div class="wrap">
           <div class="pillar-copy">
-            <p class="kicker">03 · presets</p>
+            <p class="kicker">05 · presets</p>
             <h2 id="p3-title">Swap the whole team with one preset.</h2>
             <p>An agent is a Markdown file holding its prompt, models and permissions. Put a set of them in a folder and you have a preset. Switch with <code>/preset</code> in the TUI or <code>--preset</code> on a headless run.</p>
             <ul class="points">
@@ -232,11 +318,11 @@ concrete findings.</code></pre>
         </div>
       </section>
 
-      <!-- 04 · Delegation and messaging -->
+      <!-- 06 · Delegation and messaging -->
       <section class="pillar flip" aria-labelledby="p4-title">
         <div class="wrap">
           <div class="pillar-copy">
-            <p class="kicker">04 · delegation</p>
+            <p class="kicker">06 · delegation</p>
             <h2 id="p4-title">Agents that delegate, and talk to each other.</h2>
             <p>Any agent can hand work to a subagent in the foreground or the background, nested as deep as you allow. Inside a delegation tree, agents send each other durable mail: parent to child, child to parent, sibling to sibling.</p>
             <ul class="points">
@@ -280,11 +366,11 @@ snapshot. Start in session/store.rs.
         </div>
       </section>
 
-      <!-- 05 · Observable -->
+      <!-- 07 · Observable -->
       <section class="pillar" aria-labelledby="p5-title">
         <div class="wrap">
           <div class="pillar-copy">
-            <p class="kicker">05 · observable</p>
+            <p class="kicker">07 · observable</p>
             <h2 id="p5-title">See everything the model sees.</h2>
             <p>The system prompt starts as your agent document and grows in a fixed, documented order. Everything added to the context is a durable event with its source attached, readable by any client or plugin. Nothing is slipped in unseen.</p>
             <ul class="points">
@@ -334,65 +420,6 @@ snapshot. Start in session/store.rs.
         </div>
       </section>
 
-      <!-- 06 · Anywhere -->
-      <section class="pillar flip" aria-labelledby="p6-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">06 · anywhere</p>
-            <h2 id="p6-title">Run it anywhere. Reach it from anything.</h2>
-            <p>Your sessions live in one daemon. Their tools run in runtimes: on this machine, on a server over ssh, or on a box that dials in. Open the same sessions from a terminal, a browser, or your phone, all at once.</p>
-            <ul class="points">
-              <li>Point a session at a repository on another machine and the agent reads, edits and runs commands there; the session itself stays with the daemon.</li>
-              <li>The daemon serves its own web client: chat, approvals, subagents, runtimes and memory, laid out for a phone too.</li>
-              <li>Every client sees every session live. Send from the browser, watch in the terminal, and answer an approval from either.</li>
-            </ul>
-          </div>
-          <div class="panel anywhere">
-            <svg class="topology" viewBox="0 0 440 252" role="img" aria-label="Clients (terminal, browser, phone) connect to one daemon, which runs tools in runtimes on this machine, on a server over ssh, and on a machine that dials in.">
-              <path class="link" d="M106 38 H126 V118 H146"/>
-              <path class="link" d="M106 118 H146"/>
-              <path class="link" d="M106 198 H126 V118"/>
-              <path class="link" d="M264 118 H282 V38 H300"/>
-              <path class="link" d="M282 118 H300"/>
-              <path class="link" d="M282 118 V198 H300"/>
-              <text class="link-label" x="126" y="246" text-anchor="middle">client protocol</text>
-              <text class="link-label" x="282" y="246" text-anchor="middle">runtime protocol</text>
-
-              <rect class="node" x="1" y="14" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="43">terminal</text>
-              <rect class="node" x="1" y="94" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="123">browser</text>
-              <rect class="node" x="1" y="174" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="203">phone</text>
-
-              <rect class="node root" x="146" y="62" width="118" height="112" rx="12"/>
-              <text class="node-title on-root" x="160" y="92">daemon</text>
-              <text class="node-sub on-root" x="160" y="114">sessions</text>
-              <text class="node-sub on-root" x="160" y="132">agents</text>
-              <text class="node-sub on-root" x="160" y="150">memory</text>
-
-              <rect class="node" x="300" y="14" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="35">this machine</text>
-              <text class="node-sub" x="314" y="52">local</text>
-              <rect class="node" x="300" y="94" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="115">labpc</text>
-              <text class="node-sub" x="314" y="132">over ssh</text>
-              <rect class="node" x="300" y="174" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="195">devbox</text>
-              <text class="node-sub" x="314" y="212">dials in</text>
-            </svg>
-          </div>
-        </div>
-        <div class="wrap shots-row">
-          <figure class="shots">
-            <img class="shot desktop for-light" src="web-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser: a session titled Fix the greeting in greet.py, where the agent edits greet.py (shown as a diff), runs python3 test_greet.py (shown as terminal output), and reports the fix.">
-            <img class="shot desktop for-dark" src="web-dark.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser, dark theme: the agent edits greet.py, runs its check, and reports the fix.">
-            <img class="shot phone for-light" src="web-phone-light.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone.">
-            <img class="shot phone for-dark" src="web-phone-dark.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone, dark theme.">
-          </figure>
-        </div>
-      </section>
-
     <section class="closing" aria-labelledby="closing-title">
       <div class="wrap">
         <img src="logo.svg" alt="" width="96" height="96">
@@ -429,7 +456,7 @@ snapshot. Start in session/store.rs.
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>Cookie Agent · MIT License</span>
+      <span>Cookie Agent · <a href="https://github.com/cookie-agent/cookie-agent/blob/main/LICENSE">Cookie Agent License</a></span>
       <nav aria-label="Footer">
         <a href="https://cookie-agent.github.io/doc/">Documentation</a>
         <a href="https://cookie-agent.github.io/doc/latest/install/">Installation</a>
