@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <title>Cookie Agent social card</title>
   <!-- The 1200×630 social card, og.png: see README.md for how to render it. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@500&family=JetBrains+Mono:wght@400&display=block">
   <style>
+    @font-face { font-family: "Inter"; src: url("../fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; }
+    @font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Regular.woff2") format("woff2"); }
     html, body { margin: 0; }
     body {
       width: 1200px;
@@ -13,25 +14,24 @@
       display: flex;
       align-items: center;
       gap: 64px;
-      padding: 0 88px;
+      padding: 0 96px;
       box-sizing: border-box;
-      background: #fbf4e6;
-      color: #46301f;
-      font-family: "Instrument Sans", sans-serif;
-      border-bottom: 14px solid #9c5a10;
+      background: radial-gradient(ellipse 70% 60% at 30% 40%, rgb(91 91 214 / 0.12), transparent 70%), #ffffff;
+      color: #09090b;
+      font-family: "Inter", sans-serif;
     }
-    img { width: 300px; height: 300px; flex-shrink: 0; }
-    .eyebrow { margin: 0 0 22px; font: 400 24px "JetBrains Mono", monospace; color: #9c5a10; }
-    h1 { margin: 0; font: 600 92px/1 "Fraunces", serif; letter-spacing: -0.025em; }
-    p.tag { margin: 26px 0 0; font-size: 38px; color: #625240; }
+    img { width: 260px; height: 260px; flex-shrink: 0; }
+    .eyebrow { margin: 0 0 22px; font: 400 24px "JetBrains Mono", monospace; color: #5b5bd6; }
+    h1 { margin: 0; font-size: 84px; line-height: 1.02; font-weight: 650; letter-spacing: -0.035em; }
+    p.tag { margin: 26px 0 0; font-size: 34px; color: #3f3f46; letter-spacing: -0.01em; }
   </style>
 </head>
 <body>
   <img src="../logo.svg" alt="">
   <div>
-    <p class="eyebrow">a subagent-first coding harness</p>
-    <h1>Cookie Agent</h1>
-    <p class="tag">Simple and mighty coding agent.</p>
+    <p class="eyebrow">Cookie Agent</p>
+    <h1>One home for<br>all your agents.</h1>
+    <p class="tag">Always on, on every machine.</p>
   </div>
 </body>
 </html>

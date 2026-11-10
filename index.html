@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cookie Agent · simple and mighty coding agent</title>
-  <meta name="description" content="Cookie Agent is a Rust coding agent with everything built in and nothing in context you did not ask for: switchable agent presets, delegation and agent-to-agent messaging, a fully observable context, and one daemon you reach from a terminal or a browser while tools run on any machine.">
-  <meta name="theme-color" content="#fbf4e6" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#201c16" media="(prefers-color-scheme: dark)">
+  <title>Cookie Agent · one home for all your agents</title>
+  <meta name="description" content="Cookie Agent keeps your agents in one always-on daemon. They remember what they learn, work on any of your machines, run on a schedule and hand you what they make, and you open every session from a terminal, a browser or your phone. Use Cookie Agent's own agents, or bring Claude Code and Codex.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://cookie-agent.github.io/">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Cookie Agent">
-  <meta property="og:description" content="Simple and mighty coding agent.">
+  <meta property="og:description" content="One home for all your agents.">
   <meta property="og:url" content="https://cookie-agent.github.io/">
   <meta property="og:image" content="https://cookie-agent.github.io/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Cookie Agent: Simple and mighty coding agent.">
+  <meta property="og:image:alt" content="Cookie Agent: one home for all your agents.">
   <meta name="twitter:card" content="summary_large_image">
 
   <script>
@@ -30,9 +30,7 @@
       if (scheme === "slate") document.documentElement.dataset.theme = "dark";
     } catch {}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>
 </head>
@@ -42,16 +40,17 @@
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="./">
-        <img src="logo.svg" alt="" width="40" height="40">
+        <img src="logo.svg" alt="" width="28" height="28">
         <span>Cookie Agent</span>
       </a>
       <nav class="site-nav" aria-label="Primary">
-        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
-          <svg class="to-dark" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-          <svg class="to-light" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-        </button>
+        <a class="hide-sm" href="#anywhere">Features</a>
         <a href="https://cookie-agent.github.io/doc/">Docs</a>
         <a href="https://github.com/cookie-agent/cookie-agent">GitHub</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="to-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <svg class="to-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -60,9 +59,10 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-copy">
-          <p class="eyebrow">written in Rust</p>
-          <h1>Simple and mighty coding agent.</h1>
-          <p class="lede">One daemon for all your agents: memory, API calls and skills live in one place, and you reach every session from a terminal, a browser or your phone, wherever your code lives. Bring your favorite harness, or use Cookie Agent's own agents, with everything built in and nothing reaching the model unless you ask for it.</p>
+          <span class="badge"><span class="live-dot" aria-hidden="true"></span>Always on · written in Rust</span>
+          <h1>One home for<br>all your agents.</h1>
+          <p class="lede">Cookie Agent keeps your agents in one daemon that stays on. They remember what they learn, work on any of your machines, run on a schedule and hand you what they make. Open any session from a terminal, a browser or your phone. Use Cookie Agent's own agents, or bring Claude Code and Codex.</p>
+
           <div class="install" data-active="unix" id="install">
             <div class="os-tabs" role="group" aria-label="Choose your platform">
               <button type="button" data-os="unix" aria-pressed="true">macOS · Linux</button>
@@ -72,383 +72,230 @@
               <span class="prompt" aria-hidden="true">$</span>
               <pre><code id="install-cmd">curl --proto '=https' --tlsv1.2 -LsSf https://github.com/cookie-agent/cookie-agent/releases/latest/download/cookie_agent-installer.sh | sh</code></pre>
               <button class="copy" type="button" data-copy="install-cmd" aria-label="Copy macOS and Linux install command">
-                <svg class="idle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-                <svg class="done" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <svg class="idle" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <svg class="done" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
               </button>
             </div>
             <div class="command" data-os="windows">
               <span class="prompt" aria-hidden="true">PS&gt;</span>
               <pre><code id="install-cmd-win">powershell -ExecutionPolicy Bypass -c "irm https://github.com/cookie-agent/cookie-agent/releases/latest/download/cookie_agent-installer.ps1 | iex"</code></pre>
               <button class="copy" type="button" data-copy="install-cmd-win" aria-label="Copy Windows install command">
-                <svg class="idle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-                <svg class="done" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <svg class="idle" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                <svg class="done" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
               </button>
             </div>
-          </div>
-          <p class="command-note">Linux, macOS, and Windows on x86_64 and ARM64. Release archives and nightly builds are in the <a href="https://cookie-agent.github.io/doc/latest/install/">installation guide</a>.</p>
-          <div class="actions">
-            <a class="button primary" href="https://cookie-agent.github.io/doc/">Read the docs</a>
-            <a class="button secondary" href="https://github.com/cookie-agent/cookie-agent">View on GitHub</a>
+            <p class="command-note">Linux, macOS and Windows on x86_64 and ARM64. Then run <code>cookie</code>. Archives and nightly builds are in the <a href="https://cookie-agent.github.io/doc/latest/install/">installation guide</a>.</p>
           </div>
         </div>
-        <div class="hero-art">
-          <img src="logo.svg" alt="The Cookie Agent logo: a cookie with a bite taken out, its chips wired together like a circuit" width="440" height="440">
+
+        <div class="showcase">
+          <div class="window">
+            <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>cookie web</span></div>
+            <img class="only-light" src="shots/web-light.webp" alt="The Cookie Agent web client: a session list grouped by project beside a conversation in which the agent edits a file, runs the tests and replies." width="1280" height="800">
+            <img class="only-dark" src="shots/web-dark.webp" alt="" width="1280" height="800">
+          </div>
+          <div class="window terminal">
+            <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>cookie — ~/greeter</span></div>
+            <img class="only-light" src="shots/tui-light.webp" alt="The same session in the terminal UI." width="888" height="700">
+            <img class="only-dark" src="shots/tui-dark.webp" alt="" width="888" height="700">
+          </div>
+          <div class="phone">
+            <img class="only-light" src="shots/phone-light.webp" alt="The same session open on a phone." width="390" height="844">
+            <img class="only-dark" src="shots/phone-dark.webp" alt="" width="390" height="844">
+          </div>
+        </div>
+        <p class="showcase-caption">One session, live in the terminal, the browser and on your phone.</p>
+      </div>
+    </section>
+
+    <!-- 01 · anywhere -->
+    <section class="section" id="anywhere" aria-labelledby="anywhere-title">
+      <div class="wrap split">
+        <div>
+          <p class="kicker">Anywhere</p>
+          <h2 id="anywhere-title">Every machine. One home.</h2>
+          <p class="intro">One daemon holds your sessions, memory, provider keys and skills. Runtimes carry the tools to wherever your code lives: this machine, a server over ssh, or a box behind a firewall that dials in.</p>
+          <ul class="points">
+            <li><strong>Work across machines in one session.</strong> An agent attaches another machine with <code>attach_machine</code> and reads, edits and runs commands there. Every tool call names the machine it ran on.</li>
+            <li><strong>Keys stay home.</strong> API calls, usage and cost live with the daemon; runtimes on other machines never hold your credentials.</li>
+            <li><strong>Learn once, everywhere.</strong> A skill installed or a fact remembered reaches every session on every machine.</li>
+            <li><strong>Every client, live.</strong> Send from the browser, watch in the terminal, approve from your phone.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <svg class="topology" viewBox="0 0 460 300" role="img" aria-label="Terminal, browser and phone connect to one daemon holding sessions, memory, keys and schedules. The daemon runs tools in runtimes on this machine, on labpc over ssh, and on a devbox that dials in.">
+            <path class="link" d="M110 50 H132 V150 H152"/>
+            <path class="link" d="M110 150 H152"/>
+            <path class="link" d="M110 250 H132 V150"/>
+            <path class="link" d="M290 150 H310 V50 H330"/>
+            <path class="link" d="M290 150 H330"/>
+            <path class="link" d="M310 150 V250 H330"/>
+            <path class="flow" d="M110 150 H152"/>
+            <path class="flow" d="M290 150 H310 V50 H330"/>
+            <path class="flow" d="M290 150 H310 V250 H330"/>
+
+            <rect class="node" x="1" y="26" width="109" height="48" rx="11"/>
+            <text class="t" x="16" y="55">terminal</text>
+            <rect class="node" x="1" y="126" width="109" height="48" rx="11"/>
+            <text class="t" x="16" y="155">browser</text>
+            <rect class="node" x="1" y="226" width="109" height="48" rx="11"/>
+            <text class="t" x="16" y="255">phone</text>
+
+            <rect class="root" x="152" y="70" width="138" height="160" rx="14"/>
+            <text class="t on-root" x="168" y="100">daemon</text>
+            <text class="s on-root" x="168" y="126">sessions</text>
+            <text class="s on-root" x="168" y="146">memory</text>
+            <text class="s on-root" x="168" y="166">providers · keys</text>
+            <text class="s on-root" x="168" y="186">skills</text>
+            <text class="s on-root" x="168" y="206">schedules</text>
+
+            <rect class="node" x="330" y="20" width="129" height="60" rx="11"/>
+            <text class="t" x="345" y="46">this machine</text>
+            <text class="s" x="345" y="65">local</text>
+            <rect class="node" x="330" y="120" width="129" height="60" rx="11"/>
+            <text class="t" x="345" y="146">labpc</text>
+            <text class="s" x="345" y="165">over ssh</text>
+            <rect class="node" x="330" y="220" width="129" height="60" rx="11"/>
+            <text class="t" x="345" y="246">devbox</text>
+            <text class="s" x="345" y="265">dials in</text>
+
+            <text class="lab" x="131" y="296" text-anchor="middle">client protocol</text>
+            <text class="lab" x="310" y="296" text-anchor="middle">runtime protocol</text>
+          </svg>
         </div>
       </div>
     </section>
 
-      <!-- 01 · Anywhere -->
-      <section class="pillar" aria-labelledby="p6-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">01 · anywhere</p>
-            <h2 id="p6-title">Run it anywhere. Reach it from anything.</h2>
-            <p>Cookie Agent is built as both kinds of agent at once: an always-on agent like Hermes or OpenClaw that keeps running and remembers, and a coding agent like OpenCode or Pi Coding Agent that works in your repositories. One daemon holds your sessions; their tools run in runtimes on this machine, on a server over ssh, or on a box that dials in; and you open the same sessions from a terminal, a browser, or your phone.</p>
-            <ul class="points">
-              <li><strong>Memory stays in one place.</strong> What your agents learn about you, your projects and your machines lives with the daemon, so every session on every machine starts from the same memory.</li>
-              <li><strong>API calls happen in one place.</strong> Providers, keys, usage and cost live with the daemon; runtimes on other machines never hold your credentials.</li>
-              <li><strong>Skills are shared everywhere.</strong> Install a skill once and every session on every machine has it, with nothing to copy or keep in sync.</li>
-              <li>Point a session at a repository on another machine and the agent reads, edits and runs commands there, while the session stays with the daemon.</li>
-              <li>Every client sees every session live: send from the browser, watch in the terminal, and answer an approval from either, phone included.</li>
-            </ul>
-          </div>
-          <div class="panel anywhere">
-            <svg class="topology" viewBox="0 0 440 252" role="img" aria-label="Clients (terminal, browser, phone) connect to one daemon, which runs tools in runtimes on this machine, on a server over ssh, and on a machine that dials in.">
-              <path class="link" d="M106 38 H126 V118 H146"/>
-              <path class="link" d="M106 118 H146"/>
-              <path class="link" d="M106 198 H126 V118"/>
-              <path class="link" d="M264 118 H282 V38 H300"/>
-              <path class="link" d="M282 118 H300"/>
-              <path class="link" d="M282 118 V198 H300"/>
-              <text class="link-label" x="126" y="246" text-anchor="middle">client protocol</text>
-              <text class="link-label" x="282" y="246" text-anchor="middle">runtime protocol</text>
-
-              <rect class="node" x="1" y="14" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="43">terminal</text>
-              <rect class="node" x="1" y="94" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="123">browser</text>
-              <rect class="node" x="1" y="174" width="105" height="48" rx="10"/>
-              <text class="node-title" x="15" y="203">phone</text>
-
-              <rect class="node root" x="146" y="62" width="118" height="112" rx="12"/>
-              <text class="node-title on-root" x="160" y="92">daemon</text>
-              <text class="node-sub on-root" x="160" y="114">sessions</text>
-              <text class="node-sub on-root" x="160" y="132">agents</text>
-              <text class="node-sub on-root" x="160" y="150">memory</text>
-
-              <rect class="node" x="300" y="14" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="35">this machine</text>
-              <text class="node-sub" x="314" y="52">local</text>
-              <rect class="node" x="300" y="94" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="115">labpc</text>
-              <text class="node-sub" x="314" y="132">over ssh</text>
-              <rect class="node" x="300" y="174" width="139" height="48" rx="10"/>
-              <text class="node-title" x="314" y="195">devbox</text>
-              <text class="node-sub" x="314" y="212">dials in</text>
-            </svg>
-          </div>
+    <!-- 02 · harness -->
+    <section class="section" id="harness" aria-labelledby="harness-title">
+      <div class="wrap split flip">
+        <div>
+          <p class="kicker">Your harness</p>
+          <h2 id="harness-title">Bring Claude Code or Codex.</h2>
+          <p class="intro">Agents that speak the Agent Client Protocol run as Cookie Agent agents, on the machine you pick and with that machine's own login. Their turns, tool calls and plans land in the same transcript, on every client.</p>
+          <ul class="points">
+            <li><strong>They get Cookie Agent's tools:</strong> shared memory, schedules, delegation to other agents and your MCP servers.</li>
+            <li><strong>Your rules answer their permission requests</strong>, and anything left to ask reaches you on whichever client you have open.</li>
+            <li><strong>One step to set up:</strong> <code>cookie onboard --acp claude</code>, or onboarding in the TUI or the browser.</li>
+            <li>Start a session on one, or let any agent delegate to it like a subagent.</li>
+          </ul>
         </div>
-        <div class="wrap shots-row">
-          <figure class="shots">
-            <img class="shot desktop for-light" src="web-light.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser: a session titled Fix the greeting in greet.py, where the agent edits greet.py (shown as a diff), runs python3 test_greet.py (shown as terminal output), and reports the fix.">
-            <img class="shot desktop for-dark" src="web-dark.webp" width="1280" height="800" loading="lazy" decoding="async" alt="The Cookie Agent web client in a browser, dark theme: the agent edits greet.py, runs its check, and reports the fix.">
-            <img class="shot phone for-light" src="web-phone-light.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone.">
-            <img class="shot phone for-dark" src="web-phone-dark.webp" width="392" height="848" loading="lazy" decoding="async" alt="The same session in the web client on a phone, dark theme.">
-          </figure>
-        </div>
-      </section>
-
-      <!-- 02 · Harness -->
-      <section class="pillar flip" aria-labelledby="p-harness-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">02 · harness</p>
-            <h2 id="p-harness-title">Use your favorite harness.</h2>
-            <p>Claude Code, Codex, Gemini CLI and other agents that speak the Agent Client Protocol run as Cookie Agent agents. A runtime launches the harness where your code is, and Cookie Agent drives it: its turns, tool calls and plans show up in the same transcript, on every client.</p>
-            <ul class="points">
-              <li>The harness gets Cookie Agent's tools: shared memory, delegation to other agents, scheduled prompts, and every MCP server you connected.</li>
-              <li>Your permission rules decide what it may do, and approvals reach you on whichever client you have open.</li>
-              <li>Start a session on it, or let another agent delegate to it like any subagent.</li>
-            </ul>
+        <div class="panel">
+          <div class="lineup">
+            <div class="agent-row"><span class="mark">CC</span><div><b>Claude Code</b><small>ACP agent</small></div><span class="chip"><span class="live-dot" aria-hidden="true"></span>labpc</span></div>
+            <div class="agent-row"><span class="mark">Cx</span><div><b>Codex</b><small>ACP agent</small></div><span class="chip">this machine</span></div>
+            <div class="agent-row"><span class="mark">Gm</span><div><b>Gemini CLI</b><small>ACP agent</small></div><span class="chip">devbox</span></div>
+            <div class="agent-row"><span class="mark"><img src="logo.svg" alt="" width="22" height="22"></span><div><b>primary</b><small>Cookie Agent's own, on any provider</small></div><span class="chip">any machine</span></div>
           </div>
-          <div class="panel layers" aria-label="Harnesses that run as Cookie Agent agents">
-            <p class="layer-label">Runs as an agent</p>
-            <ul class="chips">
-              <li>Claude Code</li>
-              <li>Codex</li>
-              <li>Gemini CLI</li>
-              <li>any ACP agent</li>
+          <div class="tools-row"><span>Every agent gets</span><span class="chip accent">memory</span><span class="chip accent">schedules</span><span class="chip accent">delegate</span><span class="chip accent">message</span><span class="chip accent">MCP servers</span><span class="chip accent">attach_machine</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · always on -->
+    <section class="section" id="always-on" aria-labelledby="always-title">
+      <div class="wrap split">
+        <div>
+          <p class="kicker">Always on</p>
+          <h2 id="always-title">It keeps working when you step away.</h2>
+          <p class="intro">Close the laptop and the daemon carries on. Agents run on time, pick up where they left off and remember what they learned.</p>
+          <ul class="points">
+            <li><strong>Schedules.</strong> Send a prompt once after a delay or on a cron schedule, into a session or a new one. Agents schedule their own follow-ups too.</li>
+            <li><strong>Memory.</strong> Notes about you, your projects and your machines that every later session sees or finds again, and that you can read and edit.</li>
+            <li><strong>Projects.</strong> A body of work you come back to, with its own <code>AGENTS.md</code>, default machines and agent, and memory.</li>
+            <li><strong>Cache-aware.</strong> Optionally, an idle session is compacted just before its prompt cache expires, while the cache is still warm.</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><div><div class="card-title">Nightly dependency check</div><div class="card-sub">into a new session · project greeter</div></div><span class="cron">0 3 * * *</span></div>
+            <div class="runs" aria-label="The last fourteen runs all finished"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">Memory</div><span class="card-sub">shared by every session</span></div>
+            <ul class="mem">
+              <li><code>user://preferences</code><span>Short answers; ask before pushing.</span></li>
+              <li><code>project://greeter</code><span>Run the checks with <code>python3 test_greet.py</code>.</span></li>
+              <li><code>machine://labpc</code><span>CUDA 12.6; datasets under /data.</span></li>
+              <li><code>agent://reviewer</code><span>Flag missing tests before style.</span></li>
             </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 03 · Mighty -->
-      <section class="pillar" aria-labelledby="p1-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">03 · mighty</p>
-            <h2 id="p1-title">Everything a coding agent needs, in the box.</h2>
-            <p>Providers, permissions, delegation, sessions, memory and plugins are built in, not bolted on. One daemon owns them all, on your laptop or on a server, and every client talks to it over a versioned protocol.</p>
-            <ul class="points">
-              <li>Managed and custom providers, with per-agent model fallback chains and retries.</li>
-              <li>Durable sessions with automatic compaction, forks and reverts.</li>
-              <li>Plugins, skills and MCP servers extend it without touching the core.</li>
-            </ul>
-          </div>
-          <div class="panel layers" aria-label="Built into Cookie Agent">
-            <p class="layer-label">Built in</p>
-            <ul class="chips">
-              <li>providers</li>
-              <li>permissions</li>
-              <li>agent presets</li>
-              <li>delegation</li>
-              <li>agent messaging</li>
-              <li>durable sessions</li>
-              <li>background calls</li>
-              <li>compaction</li>
-              <li>goal mode</li>
-              <li>skills</li>
-              <li>plugins</li>
-              <li>MCP</li>
-              <li>memory</li>
-              <li>runtimes</li>
-              <li>web client</li>
-              <li>usage and cost</li>
-            </ul>
-          </div>
+    <!-- 04 · share -->
+    <section class="section" id="share" aria-labelledby="share-title">
+      <div class="wrap split flip">
+        <div>
+          <p class="kicker">Share</p>
+          <h2 id="share-title">Agents hand you things. You hand them on.</h2>
+          <p class="intro">An agent can give you a chart, a report, a video or a whole HTML page. It shows up as a card in the reply, and what it keeps lives in your Assets.</p>
+          <ul class="points">
+            <li><strong>Share links.</strong> A public URL for one asset, with an expiry, that you revoke at any time. It always shows the asset as it is now.</li>
+            <li><strong>Share a conversation.</strong> Send someone a link to a live session. They chat, steer and answer approvals in it; the agent, machines and permissions stay yours.</li>
+          </ul>
         </div>
-      </section>
-
-      <!-- 04 · Small -->
-      <section class="pillar flip" aria-labelledby="p2-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">04 · small</p>
-            <h2 id="p2-title">Nothing in context you didn't ask for.</h2>
-            <p>Your agent document is the system prompt. The engine adds a single line naming the working directory. Everything else that costs tokens is opt-in or switches off.</p>
-            <ul class="points">
-              <li>Every tool is opt-in. An agent sees only the tools its permissions allow or ask for, and anything unmatched is denied.</li>
-              <li>Delegation instructions and the skills listing only appear when the agent may delegate or use skills.</li>
-              <li>AGENTS.md loading switches off globally or per agent with <code>agent_md: false</code>. MCP servers and plugins only exist once you add them.</li>
-            </ul>
+        <div>
+          <div class="shot">
+            <img class="only-light" src="shots/share-light.webp" alt="A reply with a benchmark chart and an HTML report as cards, the report open beside the chat." width="1183" height="610">
+            <img class="only-dark" src="shots/share-dark.webp" alt="" width="1183" height="610">
           </div>
-          <div class="panel agent-doc">
-            <p class="layer-label">agents/reviewer.md</p>
-            <pre><code>---
-description: Reviews changes for correctness
-mode: subagent
-enabled: true
-models:
-  - { model: "openai/gpt-5", variant: null }
-permissions:
-  read: allow
-  bash:
-    "git diff*": allow
-    "*": ask
-  write: deny
-  delegate: deny
----
-Review the requested change and report
-concrete findings.</code></pre>
-            <p class="layer-label">What its model receives</p>
-            <ul class="receives">
-              <li class="in"><span>system prompt</span><span class="src">the body above</span></li>
-              <li class="in"><span>tools</span><span class="src">read, bash</span></li>
-              <li class="fixed"><span>&lt;working_directory&gt;</span><span class="src">one line</span></li>
-              <li class="out"><span>write, delegate</span><span class="src">hidden</span></li>
-              <li class="out"><span>subagent list</span><span class="src">not included</span></li>
-              <li class="out"><span>skills listing</span><span class="src">not included</span></li>
-              <li class="out"><span>AGENTS.md</span><span class="src">root runs only</span></li>
-            </ul>
-          </div>
+          <div class="link-card"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><code>https://agents.example.dev/s/k3v9xq…</code><span class="chip">expires in 30 days</span></div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 05 · Presets -->
-      <section class="pillar" aria-labelledby="p3-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">05 · presets</p>
-            <h2 id="p3-title">Swap the whole team with one preset.</h2>
-            <p>An agent is a Markdown file holding its prompt, models and permissions. Put a set of them in a folder and you have a preset. Switch with <code>/preset</code> in the TUI or <code>--preset</code> on a headless run.</p>
-            <ul class="points">
-              <li>A preset's agents replace shared ones by name and can add their own. Documents never merge, so what you pick is exactly what runs.</li>
-              <li>Each run records its preset, agents and model bindings, so a resumed session replays with the same team.</li>
-              <li>Subagents inherit the preset of the run that started them.</li>
-            </ul>
-          </div>
-          <div class="panel presets" data-active="shared">
-            <div class="seg" role="group" aria-label="Preview a preset">
-              <button type="button" data-preset="shared" aria-pressed="true">shared</button>
-              <button type="button" data-preset="python" aria-pressed="false">python</button>
-              <button type="button" data-preset="rust" aria-pressed="false">rust</button>
-            </div>
-            <div class="presets-body">
-              <div class="tree" aria-label="Agent folder">
-                <div class="tree-root">~/.cookie-agent/agents/</div>
-                <div data-on="shared" data-off="python rust">├── primary.md</div>
-                <div data-on="shared python rust">├── reviewer.md</div>
-                <div class="dir" data-on="python">├── python/</div>
-                <div data-on="python">│   ├── primary.md</div>
-                <div data-on="python">│   └── test-writer.md</div>
-                <div class="dir" data-on="rust">└── rust/</div>
-                <div data-on="rust">    ├── primary.md</div>
-                <div data-on="rust">    └── unsafe-reviewer.md</div>
-              </div>
-              <div class="effective" aria-live="polite">
-                <p class="layer-label">Agents in this run</p>
-                <ul data-preset="shared">
-                  <li><span>primary</span><span class="src">shared</span></li>
-                  <li><span>reviewer</span><span class="src">shared</span></li>
-                </ul>
-                <ul data-preset="python">
-                  <li><span>primary</span><span class="src hot">python, replaces shared</span></li>
-                  <li><span>reviewer</span><span class="src">shared</span></li>
-                  <li><span>test-writer</span><span class="src hot">python</span></li>
-                </ul>
-                <ul data-preset="rust">
-                  <li><span>primary</span><span class="src hot">rust, replaces shared</span></li>
-                  <li><span>reviewer</span><span class="src">shared</span></li>
-                  <li><span>unsafe-reviewer</span><span class="src hot">rust</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    <!-- 05 · built right -->
+    <section class="section" id="built" aria-labelledby="built-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Built right</p>
+          <h2 id="built-title">Small where it counts. Everything else in the box.</h2>
         </div>
-      </section>
-
-      <!-- 06 · Delegation and messaging -->
-      <section class="pillar flip" aria-labelledby="p4-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">06 · delegation</p>
-            <h2 id="p4-title">Agents that delegate, and talk to each other.</h2>
-            <p>Any agent can hand work to a subagent in the foreground or the background, nested as deep as you allow. Inside a delegation tree, agents send each other durable mail: parent to child, child to parent, sibling to sibling.</p>
-            <ul class="points">
-              <li>A running agent reads its mail at the next safe point between model requests. An idle or finished one wakes up to answer.</li>
-              <li>The parent controls who can talk. Agents only learn a peer's handle when someone shares it.</li>
-              <li>Messaging is permission-gated and denied by default, with hop, inbox and per-pair limits to stop ping-pong.</li>
-            </ul>
-          </div>
-          <div class="panel delegation">
-            <svg class="agent-tree" viewBox="0 0 440 280" role="img" aria-label="A primary agent delegates to explore and reviewer subagents. The reviewer sends a message to explore.">
-              <defs>
-                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path class="arrow-head" d="M0 0 L10 5 L0 10 z"/>
-                </marker>
-              </defs>
-              <path class="edge" d="M220 70 V106 H103 V142"/>
-              <path class="edge" d="M220 106 H337 V142"/>
-              <text class="edge-label" x="232" y="96">delegate</text>
-              <path class="mail" d="M337 206 C337 262 103 262 103 210" marker-end="url(#arrow)"/>
-              <text class="mail-label" x="220" y="272" text-anchor="middle">send_message</text>
-
-              <rect class="node root" x="130" y="14" width="180" height="56" rx="10"/>
-              <text class="node-title" x="146" y="38">primary</text>
-              <text class="node-sub" x="146" y="57">root session</text>
-
-              <rect class="node" x="1" y="142" width="204" height="64" rx="10"/>
-              <text class="node-title" x="17" y="167">explore_1a2b3c4d</text>
-              <text class="node-sub" x="17" y="188">running in the background</text>
-
-              <rect class="node" x="235" y="142" width="204" height="64" rx="10"/>
-              <text class="node-title" x="251" y="167">reviewer_5e6f7a8b</text>
-              <text class="node-sub" x="251" y="188">finished, wakes on mail</text>
-            </svg>
-            <pre class="envelope"><code>&lt;agent_message from="reviewer_5e6f7a8b"&gt;
-The flake is a race between flush and
-snapshot. Start in session/store.rs.
-
-[use `send_message(to="reviewer_5e6f7a8b", ...)` to reply]
-&lt;/agent_message&gt;</code></pre>
-          </div>
+        <div class="grid">
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>See everything the model sees</h3>
+            <p>Your agent document is the system prompt. Every part added to it, from the working directory to memory and skills, shows in the transcript, and the optional ones switch off.</p>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <h3>Swap the team with a preset</h3>
+            <p>An agent is a Markdown file with its prompt, models and permissions. A folder of them is a preset; switch with <code>/preset</code> or <code>--preset</code>.</p>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6M9 6h6"/></svg>
+            <h3>Delegate and talk</h3>
+            <p>Hand work to subagents in the foreground or background. Agents in a tree send each other durable mail, gated by permissions.</p>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+            <h3>Permissions that ask</h3>
+            <p>Rules allow, ask or deny per tool, path and machine. Anything no rule covers asks you first, on whichever client you have open.</p>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>Plugins, skills and MCP</h3>
+            <p>MCP servers start when a session needs them and stop when idle. Plugins add tools, settings and pages of their own.</p>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+            <h3>Any provider, every token counted</h3>
+            <p>Managed and custom providers with per-agent fallback chains. Usage and cost per session, and durable sessions you fork and revert.</p>
+          </article>
         </div>
-      </section>
-
-      <!-- 07 · Observable -->
-      <section class="pillar" aria-labelledby="p5-title">
-        <div class="wrap">
-          <div class="pillar-copy">
-            <p class="kicker">07 · observable</p>
-            <h2 id="p5-title">See everything the model sees.</h2>
-            <p>The system prompt starts as your agent document and grows in a fixed, documented order. Everything added to the context is a durable event with its source attached, readable by any client or plugin. Nothing is slipped in unseen.</p>
-            <ul class="points">
-              <li>The TUI shows the system prompt, AGENTS.md, loaded skills, plugin-injected messages and compaction checkpoints as expandable rows.</li>
-              <li>Token counts, cache hit rates and estimated cost for each session and its whole delegation tree.</li>
-              <li>The browser shows the same transcript as the terminal, built from the same events: every tool call, AGENTS.md, skills, plugin messages and compaction checkpoints.</li>
-              <li>Failed model calls keep the provider, HTTP status, request ID and response body.</li>
-            </ul>
-          </div>
-          <div class="panel context">
-            <p class="layer-label">What goes into a run, in order</p>
-            <details>
-              <summary><span>system prompt</span><span class="src">primary.md</span></summary>
-              <p>Your agent's Markdown body, exactly as written. Frontmatter configures the agent and never enters the prompt.</p>
-            </details>
-            <details>
-              <summary><span>&lt;working_directory&gt;</span><span class="src">engine</span></summary>
-              <p>Where relative paths resolve.</p>
-            </details>
-            <details>
-              <summary><span>&lt;tool_instructions&gt;</span><span class="src">builtin.delegate</span></summary>
-              <pre><code>Available subagents:
-- reviewer: Reviews changes for correctness</code></pre>
-            </details>
-            <details>
-              <summary><span>available skills</span><span class="src">skills</span></summary>
-              <p>A generated listing of the skills this agent may invoke.</p>
-            </details>
-            <details>
-              <summary><span>plugin addendum</span><span class="src">plugin</span></summary>
-              <p>Anything an <code>agent_before_start</code> plugin appends or replaces, with the prompt fingerprint recomputed.</p>
-            </details>
-            <details open>
-              <summary><span>AGENTS.md</span><span class="src">./AGENTS.md</span></summary>
-              <p>Loaded as its own turn with per-file provenance, so editing it never invalidates the cached system prompt.</p>
-            </details>
-            <details>
-              <summary><span>skill bodies</span><span class="src">SKILL.md</span></summary>
-              <p>Each loaded skill follows as its own turn, recorded when it loads.</p>
-            </details>
-            <details>
-              <summary><span>compaction checkpoint</span><span class="src">compaction</span></summary>
-              <p>Older history is summarized into a recorded checkpoint you can open and read.</p>
-            </details>
-            <p class="context-foot">Frozen when the run starts, fingerprinted, replayable.</p>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
     <section class="closing" aria-labelledby="closing-title">
       <div class="wrap">
-        <img src="logo.svg" alt="" width="96" height="96">
+        <img src="logo.svg" alt="" width="72" height="72">
         <h2 id="closing-title">Take a bite.</h2>
-        <div class="install" data-active="unix">
-          <div class="os-tabs" role="group" aria-label="Choose your platform">
-            <button type="button" data-os="unix" aria-pressed="true">macOS · Linux</button>
-            <button type="button" data-os="windows" aria-pressed="false">Windows</button>
-          </div>
-          <div class="command" data-os="unix">
-            <span class="prompt" aria-hidden="true">$</span>
-            <pre><code id="closing-cmd">curl --proto '=https' --tlsv1.2 -LsSf https://github.com/cookie-agent/cookie-agent/releases/latest/download/cookie_agent-installer.sh | sh</code></pre>
-            <button class="copy" type="button" data-copy="closing-cmd" aria-label="Copy macOS and Linux install command">
-              <svg class="idle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-              <svg class="done" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-            </button>
-          </div>
-          <div class="command" data-os="windows">
-            <span class="prompt" aria-hidden="true">PS&gt;</span>
-            <pre><code id="closing-cmd-win">powershell -ExecutionPolicy Bypass -c "irm https://github.com/cookie-agent/cookie-agent/releases/latest/download/cookie_agent-installer.ps1 | iex"</code></pre>
-            <button class="copy" type="button" data-copy="closing-cmd-win" aria-label="Copy Windows install command">
-              <svg class="idle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-              <svg class="done" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-            </button>
-          </div>
-        </div>
+        <p class="intro">Install it, run <code>cookie</code>, and connect a provider or the agent you already use.</p>
         <div class="actions">
-          <a class="button primary" href="https://cookie-agent.github.io/doc/">Read the docs</a>
-          <a class="button secondary" href="https://github.com/cookie-agent/cookie-agent">View on GitHub</a>
+          <a class="button primary" href="#install">Install</a>
+          <a class="button secondary" href="https://cookie-agent.github.io/doc/">Read the docs</a>
         </div>
       </div>
     </section>
@@ -456,12 +303,11 @@ snapshot. Start in session/store.rs.
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>Cookie Agent · <a href="https://github.com/cookie-agent/cookie-agent/blob/main/LICENSE">Cookie Agent License</a></span>
+      <span>Cookie Agent</span>
       <nav aria-label="Footer">
-        <a href="https://cookie-agent.github.io/doc/">Documentation</a>
-        <a href="https://cookie-agent.github.io/doc/latest/install/">Installation</a>
-        <a href="https://github.com/cookie-agent/cookie-agent/releases">Releases</a>
+        <a href="https://cookie-agent.github.io/doc/">Docs</a>
         <a href="https://github.com/cookie-agent/cookie-agent">GitHub</a>
+        <a href="https://github.com/cookie-agent/cookie-agent/blob/main/LICENSE">License</a>
       </nav>
     </div>
   </footer>

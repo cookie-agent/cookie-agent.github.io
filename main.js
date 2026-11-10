@@ -48,8 +48,8 @@ const root = document.documentElement;
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const PALETTE_KEY = "/.__palette";
 const palettes = {
-  light: { index: 0, scheme: "default", media: "(prefers-color-scheme: light)", color: "#fbf4e6" },
-  dark: { index: 1, scheme: "slate", media: "(prefers-color-scheme: dark)", color: "#201c16" },
+  light: { index: 0, scheme: "default", media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  dark: { index: 1, scheme: "slate", media: "(prefers-color-scheme: dark)", color: "#0e0e10" },
 };
 const toggles = document.querySelectorAll(".theme-toggle");
 function currentTheme() {
